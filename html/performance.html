@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" media="screen" href="/topology/css/jquery.ui.selectmenu.css">
+<script src="/topology/js/lib/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/topology/js/lib/jquery-ui.custom.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/topology/js/lib/kinetic-v4.2.0.js" type="text/javascript" charset="utf-8"></script>
+<script src="/topology/js/Diagrammer.js" type="text/javascript" charset="utf-8"></script>
+<script src="/topology/js/Layout.js" type="text/javascript" charset="utf-8"></script>
+<script src="/topology/js/GenericSprite.js" type="text/javascript" charset="utf-8"></script>
+<script src="/topology/js/GenericLink.js" type="text/javascript" charset="utf-8"></script>
+<script src="/topology/js/NetworkItemRenderer.js" type="text/javascript" charset="utf-8"></script>
+<script>
+	function init(){
+		var seed = 500;
+    	var diagrammer =  new Cloudwei.Diagrammer({
+    		id: 'test',
+    		container: 'test',
+    		width: 1024,
+    		height: 768
+    	});
+    	for(var i=0;i<=seed;i++){
+    		var x = parseInt(1024*Math.random());
+    		var y = parseInt(768*Math.random());
+    		diagrammer.addNode({
+	    		id: 'node'+i,
+	    		x:x,
+	    		y:y,
+	    		renderer:new Cloudwei.NetworkItemRenderer({type:'host'}),
+	    		data: {name:'oa2',type:'host',vendor:'Linux',description:'OA System'}
+	    	});
+    	}
+    	for(var i=0;i<=seed;i++){
+    		var num1 = parseInt(seed*Math.random());
+    		var num2 = parseInt(seed*Math.random());
+    		diagrammer.addLink({
+	    		id: 'link'+i,
+	    		source: 'node'+num1,
+	    		target: 'node'+num2
+	    	});
+    	}
+    	
+    	
+    }
+</script>
+</head>
+<body onload="init()">
+<div id="toolbar" >
+<div id="test"></div>
+</body>
+</html>
